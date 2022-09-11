@@ -1,4 +1,4 @@
-﻿using Application.Features.Brands.Dtos;
+﻿using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -10,14 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.ProgrammingLanguages.Commands.CreatePL
+namespace Application.Features.ProgrammingLanguages.Commands.UpdatePL
 {
-    public class UpdatePLCommand : IRequest<CreatedPLDto>
+    public class UpdatePLCommand : IRequest<UpdatedPLDto>
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public class UpdatePLCommandHandler : IRequestHandler<UpdatePLCommand, CreatedPLDto>
+        public class UpdatePLCommandHandler : IRequestHandler<UpdatePLCommand, UpdatedPLDto>
         {
             private readonly IProgrammingLanguageRepository _plRepository;
             private readonly IMapper _mapper;
@@ -30,15 +30,15 @@ namespace Application.Features.ProgrammingLanguages.Commands.CreatePL
                 _plBusinessRules = plBusinessRules;
             }
 
-            public async Task<CreatedPLDto> Handle(UpdatePLCommand request, CancellationToken cancellationToken)
+            public async Task<UpdatedPLDto> Handle(UpdatePLCommand request, CancellationToken cancellationToken)
             {
                 await _plBusinessRules.PLNameCanNotBeDuplicatedWhenInserted(request.Name);
 
                 ProgrammingLanguage mappedPL = _mapper.Map<ProgrammingLanguage>(request);
-                ProgrammingLanguage createdPL = await _plRepository.UpdateAsync(mappedPL);
-                CreatedPLDto createdPLDto = _mapper.Map<CreatedPLDto>(createdPL);
+                ProgrammingLanguage updatedPL = await _plRepository.UpdateAsync(mappedPL);
+                UpdatedPLDto updatedPLDto = _mapper.Map<UpdatedPLDto>(updatedPL);
 
-                return createdPLDto;
+                return updatedPLDto;
             }
         }
     }

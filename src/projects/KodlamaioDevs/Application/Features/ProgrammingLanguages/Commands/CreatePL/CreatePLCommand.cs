@@ -1,4 +1,4 @@
-﻿using Application.Features.Brands.Dtos;
+﻿using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Services.Repositories;
 using AutoMapper;

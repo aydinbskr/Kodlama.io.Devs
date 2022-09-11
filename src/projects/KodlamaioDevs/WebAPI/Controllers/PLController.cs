@@ -1,5 +1,6 @@
-﻿using Application.Features.Brands.Dtos;
+﻿using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Commands.CreatePL;
+using Application.Features.ProgrammingLanguages.Commands.UpdatePL;
 using Application.Features.ProgrammingLanguages.Commands.DeletePL;
 using Application.Features.ProgrammingLanguages.Models;
 using Application.Features.ProgrammingLanguages.Queries.GetByIdPL;
@@ -21,14 +22,6 @@ namespace WebAPI.Controllers
             return Created("", result);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
-        {
-            GetListPLQuery getListPLQuery = new() { PageRequest = pageRequest };
-            PLListModel result = await Mediator.Send(getListPLQuery);
-            return Ok(result);
-        }
-
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdPLQuery getByIdPLQuery)
         {
@@ -41,13 +34,20 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Update([FromBody] UpdatePLCommand updatePLCommand)
         {
 
-            CreatedPLDto result = await Mediator.Send(updatePLCommand);
+            UpdatedPLDto result = await Mediator.Send(updatePLCommand);
             return Ok(result);
         }
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeletePLCommand deletePLCommand)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete([FromRoute] DeletePLCommand deletePLCommand)
         {
-            CreatedPLDto result = await Mediator.Send(deletePLCommand);
+            DeletedPLDto result = await Mediator.Send(deletePLCommand);
+            return Ok(result);
+        }
+        [HttpGet("GetList")]
+        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+        {
+            GetListPLQuery getListPLQuery = new() { PageRequest = pageRequest };
+            PLListModel result = await Mediator.Send(getListPLQuery);
             return Ok(result);
         }
     }
