@@ -1,4 +1,5 @@
 ﻿using Application.Features.ProgrammingLanguages.Rules;
+using Application.Features.Socials.Rules;
 using Application.Features.SystemUsers.Rules;
 using Application.Features.Technologies.Rules;
 using Core.Application.Pipelines.Authorization;
@@ -23,7 +24,7 @@ namespace Application
 
             services.AddScoped<ProgrammingLanguagesRules>();
             services.AddScoped<TechnologyBusinessRules>();
-            //services.AddScoped<SocialBusinessRules>();
+            services.AddScoped<SocialRules>();
             services.AddScoped<UserBusinessRules>();
 
 

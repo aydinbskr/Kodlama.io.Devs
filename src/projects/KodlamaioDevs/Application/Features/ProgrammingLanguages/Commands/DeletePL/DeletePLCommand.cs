@@ -15,13 +15,13 @@ namespace Application.Features.ProgrammingLanguages.Commands.DeletePL
     {
         public int Id { get; set; }
 
-        public class DeleteBrandCommandHandler : IRequestHandler<DeletePLCommand, DeletedPLDto>
+        public class DeletePLCommandHandler : IRequestHandler<DeletePLCommand, DeletedPLDto>
         {
             private readonly IProgrammingLanguageRepository _plRepository;
             private readonly IMapper _mapper;
            
 
-            public DeleteBrandCommandHandler(IProgrammingLanguageRepository plRepository, IMapper mapper)
+            public DeletePLCommandHandler(IProgrammingLanguageRepository plRepository, IMapper mapper)
             {
                 _plRepository = plRepository;
                 _mapper = mapper;

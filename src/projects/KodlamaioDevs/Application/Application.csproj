@@ -14,11 +14,8 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Socials\Commands\" />
     <Folder Include="Features\Socials\Models\" />
     <Folder Include="Features\Socials\Queries\GetByIdSocial\" />
-    <Folder Include="Features\Socials\Rules\" />
-    <Folder Include="Features\Socials\Profiles\" />
   </ItemGroup>
 
 </Project>

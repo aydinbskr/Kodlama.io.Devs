@@ -16,13 +16,13 @@ namespace Application.Features.ProgrammingLanguages.Commands.CreatePL
     {
         public string Name { get; set; }
 
-        public class CreateBrandCommandHandler : IRequestHandler<CreatePLCommand, CreatedPLDto>
+        public class CreatePLCommandHandler : IRequestHandler<CreatePLCommand, CreatedPLDto>
         {
             private readonly IProgrammingLanguageRepository _plRepository;
             private readonly IMapper _mapper;
             private readonly ProgrammingLanguagesRules _plBusinessRules;
 
-            public CreateBrandCommandHandler(IProgrammingLanguageRepository plRepository, IMapper mapper, ProgrammingLanguagesRules plBusinessRules)
+            public CreatePLCommandHandler(IProgrammingLanguageRepository plRepository, IMapper mapper, ProgrammingLanguagesRules plBusinessRules)
             {
                 _plRepository = plRepository;
                 _mapper = mapper;
